@@ -9,6 +9,7 @@ namespace Wox.Plugin.PepMassCalculator
     public class PepMassCalculator : IPlugin
     {
         public List<Result> Query(Query query) {
+            return new List<Result>{new Result("Test", "no", "test")};
             throw new NotImplementedException();
         }
 
