@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wox-peptide-mass-calculator", "wox-peptide-mass-calculator\wox-peptide-mass-calculator.csproj", "{91B3A479-2464-4561-A139-DD266DA7573C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wox.Plugin.PepMassCalculator", "Wox.Plugin.PepMassCalculator\Wox.Plugin.PepMassCalculator.csproj", "{AA2AFFE4-4F1D-4604-ADF2-8414CCBC08CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{91B3A479-2464-4561-A139-DD266DA7573C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{91B3A479-2464-4561-A139-DD266DA7573C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{91B3A479-2464-4561-A139-DD266DA7573C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{91B3A479-2464-4561-A139-DD266DA7573C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA2AFFE4-4F1D-4604-ADF2-8414CCBC08CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA2AFFE4-4F1D-4604-ADF2-8414CCBC08CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA2AFFE4-4F1D-4604-ADF2-8414CCBC08CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA2AFFE4-4F1D-4604-ADF2-8414CCBC08CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8ADB4580-2ED8-4DCA-959C-F66F3A62426C}
+		SolutionGuid = {E7527DD8-D136-451C-B811-B4AD03316453}
 	EndGlobalSection
 EndGlobal
