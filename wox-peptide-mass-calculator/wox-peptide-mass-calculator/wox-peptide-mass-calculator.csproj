@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>wox_peptide_mass_calculator</RootNamespace>
+  </PropertyGroup>
+
+</Project>
