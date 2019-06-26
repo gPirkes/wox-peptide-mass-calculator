@@ -12,8 +12,9 @@ namespace Wox.Plugin.PepMassCalculator {
 
         public MassCalculationResult() {
             NotRecognisedChars = new List<char>();
-            MonoisotopicMass = 0;
-            AverageMass = 0;
+            // initialise with the masses on the termini of the peptide (H and HO)
+            MonoisotopicMass = 18.0105647;
+            AverageMass = 18.01528;
         }
 
         /// <summary>
