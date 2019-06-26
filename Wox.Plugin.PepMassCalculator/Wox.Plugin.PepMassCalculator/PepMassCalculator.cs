@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Forms;
 
 namespace Wox.Plugin.PepMassCalculator {
     public class PepMassCalculator : IPlugin {
@@ -18,6 +20,7 @@ namespace Wox.Plugin.PepMassCalculator {
             {'H', new AminoAcid(137.058912, 137.1393)}, //137.05891
             {'I', new AminoAcid(113.084064, 113.1576)}, //113.08407
             {'L', new AminoAcid(113.084064, 113.1576)},
+            {'J', new AminoAcid(113.084064, 113.1576)},
             {'K', new AminoAcid(128.094963, 128.1723)}, //128.09497
             {'M', new AminoAcid(131.040485, 131.1961)}, //131.0405
             {'F', new AminoAcid(147.068414, 147.1739)}, //147.06842
@@ -28,18 +31,59 @@ namespace Wox.Plugin.PepMassCalculator {
             {'W', new AminoAcid(186.079313, 186.2099)}, //186.07932
             {'Y', new AminoAcid(163.06332, 163.1733)}, //163.06332
             {'V', new AminoAcid(99.068414, 99.1311)}, //99.06842
-            {'J', new AminoAcid(113.084064, 113.1576)},
             {'O', new AminoAcid(237.14772677, 237.300713363271)},
         };
 
 
+        public MassCalculationResult CalculatePeptideMasses(string peptide) {
+            var result = new MassCalculationResult();
+
+            foreach (char aaChar in peptide.ToUpperInvariant()) {
+                if (AminoAcids.TryGetValue(aaChar, out var aminoAcid)) {
+                    result.AddAminoAcid(aminoAcid);
+                } else {
+                    result.NotRecognisedChars.Add(aaChar);
+                }
+            }
+
+            return result;
+        }
+
+
         public List<Result> Query(Query query) {
-            return new List<Result> {new Result("Test", "no", "test")};
-//            throw new NotImplementedException();
+            var result = CalculatePeptideMasses(query.Search);
+            
+            
+            var resultList = new List<Result> {
+                new Result {
+                    Title = $"{result.MonoisotopicMass}",
+                    SubTitle = "Monoisotopic Mass", 
+                    Action = _ => {
+                        Clipboard.SetText($"{result.MonoisotopicMass}");
+                        return true;
+                    }
+                },
+                new Result {
+                    Title = $"{result.AverageMass}",
+                    SubTitle = "Average Mass", 
+                    Action = _ => {
+                        Clipboard.SetText($"{result.AverageMass}");
+                        return true;
+                    }
+                }
+            };
+
+            if (result.NotRecognisedChars.Any()) {
+                resultList.Add(new Result {
+                    Title = result.GetNotRecognisedCharsString(),
+                    SubTitle = "Not recognised characters."
+                });
+            }
+
+            return resultList;
         }
 
         public void Init(PluginInitContext context) {
-//            throw new NotImplementedException();
         }
     }
 }
