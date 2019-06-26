@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Wox.Plugin.PepMassCalculator {
+﻿namespace Wox.Plugin.PepMassCalculator {
+    /// <summary>
+    /// data structure for the map
+    /// </summary>
     public class AminoAcid {
 
         public double MonoIsotopicMass { get; private set; }

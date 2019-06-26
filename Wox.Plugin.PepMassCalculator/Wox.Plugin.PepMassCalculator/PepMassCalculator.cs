@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Forms;
 
+/// <summary>
+/// main class
+/// </summary>
 namespace Wox.Plugin.PepMassCalculator {
+    /// <summary>
+    /// amino acid masses, stored in a static dictionary
+    /// </summary>
     public class PepMassCalculator : IPlugin {
-        private static Dictionary<char, AminoAcid> AminoAcids = new Dictionary<char, AminoAcid> {
+        private static readonly Dictionary<char, AminoAcid> AminoAcids = new Dictionary<char, AminoAcid> {
             {'A', new AminoAcid(71.037114, 71.0779)}, //71.03712
             {'R', new AminoAcid(156.101111, 156.1857)}, //156.10112
             {'N', new AminoAcid(114.042927, 114.1026)}, //114.04293
@@ -38,6 +40,7 @@ namespace Wox.Plugin.PepMassCalculator {
         public MassCalculationResult CalculatePeptideMasses(string peptide) {
             var result = new MassCalculationResult();
 
+            // TODO: if ever lowercase letters should be included remove the ToUpperInvariant() Call here - think about the consequences.
             foreach (char aaChar in peptide.ToUpperInvariant()) {
                 if (AminoAcids.TryGetValue(aaChar, out var aminoAcid)) {
                     result.AddAminoAcid(aminoAcid);
@@ -53,37 +56,46 @@ namespace Wox.Plugin.PepMassCalculator {
         public List<Result> Query(Query query) {
             var result = CalculatePeptideMasses(query.Search);
             
-            
+            // list for the results
             var resultList = new List<Result> {
+                // monoisotopic mass
                 new Result {
                     Title = $"{result.MonoisotopicMass}",
                     SubTitle = "Monoisotopic Mass", 
                     Action = _ => {
                         Clipboard.SetText($"{result.MonoisotopicMass}");
                         return true;
-                    }
+                    }, 
+                    Score = 10
                 },
+                // average mass
                 new Result {
                     Title = $"{result.AverageMass}",
                     SubTitle = "Average Mass", 
                     Action = _ => {
                         Clipboard.SetText($"{result.AverageMass}");
                         return true;
-                    }
+                    }, 
+                    Score = 5
                 }
             };
 
+            // chars not present in the dictionary
             if (result.NotRecognisedChars.Any()) {
                 resultList.Add(new Result {
                     Title = result.GetNotRecognisedCharsString(),
-                    SubTitle = "Not recognised characters."
+                    SubTitle = "Not recognized characters.", 
+                    Score = 1
                 });
+                
             }
 
             return resultList;
         }
 
         public void Init(PluginInitContext context) {
+            // no need to do anything here. 
+            // could put the amino acid masses into an extra file and read it here to make it customizable. 
         }
     }
 }
