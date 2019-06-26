@@ -1,12 +1,12 @@
 ﻿{
     "ID": "66F92C5A-D5FD-429C-A10D-5ABC62C32AAA",
-    "ActionKeyword": "pep",
+    "ActionKeyword": "p",
     "Name": "peptide mass calculator",
     "Description": "A Wox plugin to caclulate peptide masses", 
     "Author": "@gPirkes",
     "Version": "1.0.0",
     "Language": "csharp",
     "Website": "https://github.com/gPirkes/wox-peptide-mass-calculator",
-    "IcoPath": "Images\\no_icon.png",
+    "IcoPath": "no_icon.png",
     "ExecuteFileName": "Wox.Plugin.PepMassCalculator.dll"
 }
