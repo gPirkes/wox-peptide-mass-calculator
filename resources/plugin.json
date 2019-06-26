@@ -4,7 +4,7 @@
     "Name": "peptide mass calculator",
     "Description": "A Wox plugin to calculate peptide masses", 
     "Author": "@gPirkes",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "Language": "csharp",
     "Website": "https://github.com/gPirkes/wox-peptide-mass-calculator",
     "IcoPath": "icon_pepmasscalc.png",
